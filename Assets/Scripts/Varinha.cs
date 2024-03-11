@@ -5,6 +5,10 @@ using UnityEngine;
 public class Varinha : MonoBehaviour
 {
 
+    public Transform tiroSpawner;
+    public Rigidbody2D tiroPrefab;
+    public float fireRate = 1f;
+
     Transform player;
     Vector3 offset;
 
@@ -12,6 +16,8 @@ public class Varinha : MonoBehaviour
 	{
         player = GameObject.FindGameObjectWithTag("Player").transform;	
         offset = transform.position - player.position;
+
+        StartCoroutine(Atirar());
     }
 
 	// Update is called once per frame
@@ -23,5 +29,17 @@ public class Varinha : MonoBehaviour
 
         transform.position = player.position + offset;
 
+    }
+
+    IEnumerator Atirar()
+    {
+        while (true)
+        {
+			yield return new WaitForSeconds(fireRate);
+			Rigidbody2D tiro = Instantiate(tiroPrefab, tiroSpawner.position, tiroSpawner.rotation);
+			tiro.AddForce(tiroSpawner.right * 10, ForceMode2D.Impulse);
+		}
+
+        
     }
 }
