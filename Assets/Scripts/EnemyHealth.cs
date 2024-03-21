@@ -31,11 +31,11 @@ public class EnemyHealth : MonoBehaviour
 	}
 
 	void Die()
-	{
-		
+	{		
 		damageEffect.transform.parent = null;
 		damageEffect.transform.localScale = new Vector3(1, 1, 1);
 		Destroy(damageEffect.gameObject, damageEffect.main.duration);
 		Destroy(gameObject);
+		GameManager.instance.enemiesAlive--;
 	}
 }

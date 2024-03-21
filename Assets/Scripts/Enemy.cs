@@ -4,34 +4,44 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float fireRate = 1f;
+    public Vector2 fireRate = new Vector2(1f,2f);
 	public Transform tiroSpawner;
 	public Rigidbody2D tiroPrefab;
 	public float shotForce = 7f;
 
 	public float speed = 5f;
-	public float minHeight = 1;
+	public Vector2 minHeight = new Vector2(1f, 4f);
 
 	float startSpeed;
 
 	Transform player;
+
+	public float distanceToPlayer;
+	float newMinHeight;
 
 	private void Start()
 	{
 		StartCoroutine(Atirar());
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		startSpeed = speed;
+		distanceToPlayer = Random.Range(8f, 16f);
+		newMinHeight = Random.Range(minHeight.x, minHeight.y);
 	}
 
 	// Update is called once per frame
 	void Update()
     {
-		transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-		if (transform.position.y < minHeight)
+		float distance = Vector2.Distance(transform.position, player.position);
+		if (distance > distanceToPlayer)
 		{
-			transform.position = new Vector2(transform.position.x, minHeight);
+			transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 		}
-		else if (transform.position.y < minHeight + 3)
+		
+		if (transform.position.y < newMinHeight)
+		{
+			transform.position = new Vector2(transform.position.x, newMinHeight);
+		}
+		if (transform.position.y < newMinHeight + 2)
 		{
 			speed = speed * 0.9f;
 		}
@@ -48,7 +58,7 @@ public class Enemy : MonoBehaviour
 	{
 		while (true)
 		{
-			yield return new WaitForSeconds(fireRate);
+			yield return new WaitForSeconds(Random.Range(fireRate.x, fireRate.y));
 			Rigidbody2D tiro = Instantiate(tiroPrefab, tiroSpawner.position, tiroSpawner.rotation);
 			tiro.AddForce(tiroSpawner.right * shotForce, ForceMode2D.Impulse);
 		}
