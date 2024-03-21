@@ -8,6 +8,7 @@ public class Varinha : MonoBehaviour
     public Transform tiroSpawner;
     public Rigidbody2D tiroPrefab;
     public float fireRate = 1f;
+    public float shotForce = 10f;
 
     Transform player;
     Vector3 offset;
@@ -26,7 +27,6 @@ public class Varinha : MonoBehaviour
         var dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
         transform.position = player.position + offset;
 
     }
@@ -37,9 +37,8 @@ public class Varinha : MonoBehaviour
         {
 			yield return new WaitForSeconds(fireRate);
 			Rigidbody2D tiro = Instantiate(tiroPrefab, tiroSpawner.position, tiroSpawner.rotation);
-			tiro.AddForce(tiroSpawner.right * 10, ForceMode2D.Impulse);
+			tiro.AddForce(tiroSpawner.right * shotForce, ForceMode2D.Impulse);
 		}
-
         
     }
 }
