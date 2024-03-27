@@ -21,6 +21,12 @@ public class GameManager : MonoBehaviour
 	public TMP_Text[] upgradeTitles;
 	public TMP_Text[] upgradeDescriptions;
 	public Image[] upgradeImages;
+	bool choosingUpgrade;
+
+	[Header("Player Stats")]
+	public float playerDamage = 4;
+	public Varinha varinha;
+	public PlayerMovement player;
 
 	private void Awake()
 	{
@@ -63,6 +69,7 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator ChoosingUpgrade()
 	{
+		choosingUpgrade = true;
 		System.Random random = new System.Random();
 		for (int i = 0; i < upgrades.Count; i++)
 		{
@@ -78,7 +85,11 @@ public class GameManager : MonoBehaviour
 			upgradeImages[i].sprite = upgrades[i].image;
 		}
 		upgradePanel.SetActive(true);
-		yield return new WaitForSeconds(5);
+		while (choosingUpgrade)
+		{
+			yield return null;
+		}
+		
 		upgradePanel.SetActive(false);
 	}
 
@@ -91,5 +102,26 @@ public class GameManager : MonoBehaviour
 			enemiesAlive++;
 			}
 		
+	}
+
+	public void SetUpgrade(Upgrade upgrade)
+	{
+		if(upgrade.type == UpgradeType.Catalyst)
+		{
+			playerDamage += 2;
+		}
+		else if(upgrade.type == UpgradeType.Resonance)
+		{
+			varinha.fireRate *= 0.90f;
+		}
+		else if(upgrade.type == UpgradeType.Swift)
+		{
+			player.speed *= 1.2f;
+		}
+		else if(upgrade.type == UpgradeType.Thunderbolt)
+		{
+			//criar trobão
+		}
+		choosingUpgrade = false;
 	}
 }
