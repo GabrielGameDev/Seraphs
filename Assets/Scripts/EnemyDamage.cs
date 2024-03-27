@@ -7,9 +7,14 @@ public class EnemyDamage : MonoBehaviour
 {
     public float damage = 1;
     public bool destroyOnImpact = true;
-    
 
-    void OnTriggerEnter2D(Collider2D other)
+	private void Start()
+	{
+		damage = GameManager.instance.enemyDamage;
+	}
+
+
+	void OnTriggerEnter2D(Collider2D other)
     {
 		PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if(playerHealth != null)

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager instance;
 	public GameObject enemyPrefab;
 	public int round;
+	public int enemyDamage = 1;
 
 	public int enemiesAlive;
 
@@ -47,14 +48,16 @@ public class GameManager : MonoBehaviour
 			yield return null;
 		}
 		round++;
+		enemyDamage++;
 	}
 
 	void SpawnEnemies()
 	{
 		for (int i = 0; i < round + 3; i++)
 			{
-				Instantiate(enemyPrefab, new Vector2(Random.Range(-17f, 17f), 11), Quaternion.identity);
-				enemiesAlive++;
+				GameObject newEnemy = Instantiate(enemyPrefab, new Vector2(Random.Range(-17f, 17f), 11), Quaternion.identity);
+			newEnemy.GetComponent<EnemyHealth>().maxHealth = round * 4 + 1;	
+			enemiesAlive++;
 			}
 		
 	}
