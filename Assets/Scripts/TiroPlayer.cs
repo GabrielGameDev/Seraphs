@@ -7,7 +7,7 @@ public class TiroPlayer : MonoBehaviour
     public float damage = 4;
 	public int destroyAmount = 1;
 
-	private void Start()
+	private void Awake()
 	{
 		damage = GameManager.instance.playerDamage;
 		Destroy(gameObject, 5);

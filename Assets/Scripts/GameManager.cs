@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class GameManager : MonoBehaviour
 	public float playerDamage = 4;
 	public Varinha varinha;
 	public PlayerMovement player;
+	public GameObject thunderboltPrefab;
+	public bool hasThunderbolt;
+	public float thunderboltFireRate = 8f;
+	public float thunderboltDamage = 10;
+	float nextThunderboltFire;
 
 	private void Awake()
 	{
@@ -42,6 +48,17 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		StartCoroutine(GameLoop());
+	}
+
+	void Update()
+	{
+		if (hasThunderbolt && Time.time > nextThunderboltFire)
+		{
+			nextThunderboltFire = Time.time + thunderboltFireRate;
+			GameObject newThunder = Instantiate(thunderboltPrefab, new Vector2(Random.Range(-17f, 17f), 13), Quaternion.identity);
+			newThunder.GetComponent<TiroPlayer>().damage = thunderboltDamage;
+			Destroy(newThunder, 0.67f);
+		}
 	}
 
 	IEnumerator GameLoop()
@@ -117,7 +134,9 @@ public class GameManager : MonoBehaviour
 		}
 		else if(upgrade.type == UpgradeType.Thunderbolt)
 		{
-			//criar trobão
+			hasThunderbolt = true;
+			thunderboltFireRate *= 0.9f;
+			thunderboltDamage += 1;
 		}
 		choosingUpgrade = false;
 	}
