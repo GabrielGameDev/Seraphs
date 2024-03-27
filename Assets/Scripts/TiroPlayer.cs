@@ -7,7 +7,13 @@ public class TiroPlayer : MonoBehaviour
     public float damage = 4;
 	public int destroyAmount = 1;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void Start()
+	{
+		damage = GameManager.instance.playerDamage;
+		Destroy(gameObject, 5);
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
     {
 		EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
         if (enemy != null)

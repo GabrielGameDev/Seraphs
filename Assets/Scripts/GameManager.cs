@@ -18,9 +18,7 @@ public class GameManager : MonoBehaviour
 	public List<Upgrade> upgrades = new List<Upgrade>();
 
 	public GameObject upgradePanel;
-	public TMP_Text[] upgradeTitles;
-	public TMP_Text[] upgradeDescriptions;
-	public Image[] upgradeImages;
+	public UpgradeCard[] upgradeCards;
 	bool choosingUpgrade;
 
 	[Header("Player Stats")]
@@ -80,9 +78,8 @@ public class GameManager : MonoBehaviour
 		}
 		for (int i = 0; i < 3; i++)
 		{
-			upgradeTitles[i].text = upgrades[i].title;
-			upgradeDescriptions[i].text = upgrades[i].description;
-			upgradeImages[i].sprite = upgrades[i].image;
+			upgradeCards[i].SetUpgrade(upgrades[i]);
+			
 		}
 		upgradePanel.SetActive(true);
 		while (choosingUpgrade)
