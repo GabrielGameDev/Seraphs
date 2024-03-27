@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
 	public float maxHealth = 12;
 	public ParticleSystem damageEffect;
+	public bool destroyPlayerBullet = true;
 	float currentHealth;
 	SpriteRenderer spriteRenderer;
 
@@ -36,6 +37,10 @@ public class EnemyHealth : MonoBehaviour
 		damageEffect.transform.localScale = new Vector3(1, 1, 1);
 		Destroy(damageEffect.gameObject, damageEffect.main.duration);
 		Destroy(gameObject);
-		GameManager.instance.enemiesAlive--;
+		if(destroyPlayerBullet)
+		{
+			GameManager.instance.enemiesAlive--;
+		}
+		
 	}
 }

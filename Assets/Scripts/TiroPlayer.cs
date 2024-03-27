@@ -12,7 +12,11 @@ public class TiroPlayer : MonoBehaviour
         if (enemy != null)
         {
 			enemy.TakeDamage(damage, transform.position);
-			Destroy(gameObject);
+			if(enemy.destroyPlayerBullet)
+			{
+				Destroy(gameObject);
+			}
+			
 		}
 		
 	}

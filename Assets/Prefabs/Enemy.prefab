@@ -133,12 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44dfd2bc5c796834d9f35673f719c467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 2
+  fireRate: {x: 1.5, y: 3}
   tiroSpawner: {fileID: 8913860134999587426}
   tiroPrefab: {fileID: 1567035390364514797, guid: db6ebdc7430f897419412948d2fb9a6e, type: 3}
   shotForce: 5
   speed: 10
-  minHeight: 1
+  minHeight: {x: 1, y: 4}
+  distanceToPlayer: 0
 --- !u!114 &6719275253029438935
 MonoBehaviour:
   m_ObjectHideFlags: 0

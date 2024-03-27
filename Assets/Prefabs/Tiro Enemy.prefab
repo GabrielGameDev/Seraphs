@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7989814721486814966}
   - component: {fileID: 7711169656585527933}
   - component: {fileID: 1567035390364514797}
+  - component: {fileID: 8106814104526737698}
   m_Layer: 0
   m_Name: Tiro Enemy
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1499669090679528818}
+  - {fileID: 5165096306701123533}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7989814721486814966
@@ -149,6 +151,21 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &8106814104526737698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510680553224338887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4291993f83373f4e9f68b4df2b856cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  damageEffect: {fileID: 7562902982704572004}
+  destroyPlayerBullet: 0
 --- !u!1 &7372379638411013190
 GameObject:
   m_ObjectHideFlags: 0
@@ -4979,3 +4996,82 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1001 &7209790991388761201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2815166257024742993}
+    m_Modifications:
+    - target: {fileID: 935207776145177109, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.393251
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 47.033108
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.048826218
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685519745405410109, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+      propertyPath: m_Name
+      value: Enemy Damage Effect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+--- !u!4 &5165096306701123533 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2567132106661815228, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+  m_PrefabInstance: {fileID: 7209790991388761201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7562902982704572004 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 935207776145177109, guid: 1b1fa27b0223e784cb4fca776b798ac7, type: 3}
+  m_PrefabInstance: {fileID: 7209790991388761201}
+  m_PrefabAsset: {fileID: 0}
