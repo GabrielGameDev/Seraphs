@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +14,13 @@ public class GameManager : MonoBehaviour
 	public int enemiesAlive;
 
 	public bool gameOver;
+
+	public List<Upgrade> upgrades = new List<Upgrade>();
+
+	public GameObject upgradePanel;
+	public TMP_Text[] upgradeTitles;
+	public TMP_Text[] upgradeDescriptions;
+	public Image[] upgradeImages;
 
 	private void Awake()
 	{
@@ -36,6 +45,7 @@ public class GameManager : MonoBehaviour
 		while (!gameOver)
 		{
 			yield return StartCoroutine(Round());
+			yield return StartCoroutine(ChoosingUpgrade());
 		}
 		
 	}
@@ -49,6 +59,27 @@ public class GameManager : MonoBehaviour
 		}
 		round++;
 		enemyDamage++;
+	}
+
+	IEnumerator ChoosingUpgrade()
+	{
+		System.Random random = new System.Random();
+		for (int i = 0; i < upgrades.Count; i++)
+		{
+			int j = random.Next(i, upgrades.Count);
+			Upgrade temp = upgrades[i];
+			upgrades[i] = upgrades[j];
+			upgrades[j] = temp;
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			upgradeTitles[i].text = upgrades[i].title;
+			upgradeDescriptions[i].text = upgrades[i].description;
+			upgradeImages[i].sprite = upgrades[i].image;
+		}
+		upgradePanel.SetActive(true);
+		yield return new WaitForSeconds(5);
+		upgradePanel.SetActive(false);
 	}
 
 	void SpawnEnemies()
