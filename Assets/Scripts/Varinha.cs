@@ -38,6 +38,7 @@ public class Varinha : MonoBehaviour
 			yield return new WaitForSeconds(fireRate);
 			Rigidbody2D tiro = Instantiate(tiroPrefab, tiroSpawner.position, tiroSpawner.rotation);
 			tiro.AddForce(tiroSpawner.right * shotForce, ForceMode2D.Impulse);
+            GameManager.instance.PlaySound(GameManager.instance.playerShot);
 		}
         
     }

@@ -35,6 +35,13 @@ public class GameManager : MonoBehaviour
 	public float thunderboltDamage = 10;
 	float nextThunderboltFire;
 
+	[Header("Sounds")]
+	AudioSource audioSource;
+	public AudioClip thunderSound;
+	public AudioClip[] enemyDamageSounds;
+	public AudioClip playerDamageSound;
+	public AudioClip playerShot;
+
 	private void Awake()
 	{
 		if (instance == null)
@@ -50,6 +57,7 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		audioSource = GetComponent<AudioSource>();
 		StartCoroutine(GameLoop());
 	}
 
@@ -60,6 +68,7 @@ public class GameManager : MonoBehaviour
 			nextThunderboltFire = Time.time + thunderboltFireRate;
 			GameObject newThunder = Instantiate(thunderboltPrefab, new Vector2(Random.Range(-17f, 17f), 13), Quaternion.identity);
 			newThunder.GetComponent<TiroPlayer>().damage = thunderboltDamage;
+			PlaySound(thunderSound);
 			Destroy(newThunder, 0.67f);
 		}
 	}
@@ -156,5 +165,10 @@ public class GameManager : MonoBehaviour
 	void Restart()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+	}
+
+	public void PlaySound(AudioClip clip)
+	{
+		audioSource.PlayOneShot(clip);
 	}
 }

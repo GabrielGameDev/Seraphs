@@ -28,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         {
 			return;
 		}
+        GameManager.instance.PlaySound(GameManager.instance.playerDamageSound);
 		currentHealth -= damage;
         canTakeDamage = false;
         healthBar.rectTransform.localScale = new Vector2(currentHealth / maxHealth, 1);

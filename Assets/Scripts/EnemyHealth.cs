@@ -14,12 +14,13 @@ public class EnemyHealth : MonoBehaviour
 
 	private void Start()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		currentHealth = maxHealth;
 	}
 
 	public void TakeDamage(float damage, Vector2 position)
 	{
+		GameManager.instance.PlaySound(GameManager.instance.enemyDamageSounds[Random.Range(0, GameManager.instance.enemyDamageSounds.Length)]);
 		currentHealth -= damage;
 		Color color = spriteRenderer.color;
 		color.a = currentHealth / maxHealth;
