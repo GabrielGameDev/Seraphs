@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Catalyst
   description: Projectile Damage +1
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 9bca5f5f42e55ac4db81fa6ffbd005e4, type: 3}
+  type: 0

@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void TakeDamage(float damage)
@@ -49,6 +49,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-		GameManager.instance.gameOver = true;
+		GameManager.instance.GameOver();
 	}
 }

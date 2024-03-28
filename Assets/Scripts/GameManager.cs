@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
 	public GameObject upgradePanel;
 	public UpgradeCard[] upgradeCards;
 	bool choosingUpgrade;
+
+	public GameObject gameOverText;
 
 	[Header("Player Stats")]
 	public float playerDamage = 4;
@@ -84,6 +87,7 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator ChoosingUpgrade()
 	{
+		Time.timeScale = 0;
 		choosingUpgrade = true;
 		System.Random random = new System.Random();
 		for (int i = 0; i < upgrades.Count; i++)
@@ -105,6 +109,7 @@ public class GameManager : MonoBehaviour
 		}
 		
 		upgradePanel.SetActive(false);
+		Time.timeScale = 1;
 	}
 
 	void SpawnEnemies()
@@ -139,5 +144,17 @@ public class GameManager : MonoBehaviour
 			thunderboltDamage += 1;
 		}
 		choosingUpgrade = false;
+	}
+
+	public void GameOver()
+	{
+		gameOver = true;
+		gameOverText.SetActive(true);
+		Invoke("Restart", 2);
+	}
+
+	void Restart()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }

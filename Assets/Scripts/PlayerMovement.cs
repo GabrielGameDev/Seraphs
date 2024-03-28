@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 10f;
     public float jumpForce = 10f;
 
+    bool isGrounded;
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -17,9 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {      
+        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1f, LayerMask.GetMask("Ground"));
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
 			rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 		}

@@ -156,6 +156,7 @@ MonoBehaviour:
   maxHealth: 12
   damageEffect: {fileID: 1031084625960132425}
   destroyPlayerBullet: 1
+  floatNumber: {fileID: 8652928653119200190, guid: 7e9f0c47247a4714ea0c031c63b0279c, type: 3}
 --- !u!61 &6395167334072301788
 BoxCollider2D:
   m_ObjectHideFlags: 0
